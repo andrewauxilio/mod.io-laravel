@@ -19,7 +19,9 @@ class TokenServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        // TODO: challenge 3.0
+        $this->app->bind('App\Http\Controllers\ChallengeThree\Tokens\Services\TokenService', function ($app) {
+            return new TokenService();
+          });
     }
 
     /**

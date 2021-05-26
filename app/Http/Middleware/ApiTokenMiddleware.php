@@ -5,9 +5,17 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\ChallengeThree\Tokens\Services\TokenService;
 
 class ApiTokenMiddleware
 {
+    public $tokenService;
+
+    public function __construct(TokenService $tokenService)
+    {
+        $this->tokenService = $tokenService;
+    }
+
     /**
      * Handle an incoming request.
      *
@@ -17,9 +25,7 @@ class ApiTokenMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        $token = (Auth::user()->tokens->first());
-
-        if ($token && $request->input('token') !== $token->key) {
+        if (!$this->tokenService->checkToken($request->input('token'), Auth::user())) {
             return response('Bad request', 401);
         }
 

@@ -28,6 +28,6 @@ class EventServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        // TODO: challenge 3.0
+        Token::observe(TokenObserver::class);
     }
 }
