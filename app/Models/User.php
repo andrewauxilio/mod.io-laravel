@@ -116,4 +116,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Mod::class);
     }
+
+    public function tokens(): HasMany
+    {
+        return $this->hasMany(Token::class);
+    }
 }

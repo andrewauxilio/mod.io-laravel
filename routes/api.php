@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ChallengeOne\Users as Users;
 use App\Http\Controllers\ChallengeTwo\Mods as Mods;
+use App\Http\Controllers\ChallengeThree\Tokens as Tokens;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,3 +25,4 @@ Route::get('mods', [Mods\IndexController::class, 'index']);
 Route::post('mods', [Mods\CreateController::class, 'create']);
 
 // TODO: add routes for challenge 3.0
+Route::post('tokens', [Tokens\CreateController::class, 'create']);
