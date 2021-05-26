@@ -112,11 +112,21 @@ class User extends Authenticatable
         $this->setAttribute('password', $password);
     }
 
+    /**
+     * relationship with mod
+     *
+     * @return HasMany
+     */
     public function mods(): HasMany
     {
         return $this->hasMany(Mod::class);
     }
 
+    /**
+     * relationship with token
+     *
+     * @return HasMany
+     */
     public function tokens(): HasMany
     {
         return $this->hasMany(Token::class);

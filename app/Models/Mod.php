@@ -51,7 +51,7 @@ class Mod extends Model
         return $this->getAttribute('name');
     }
 
-    /*
+    /** 
      * get the url for a mod
      *
      * @return string
@@ -61,7 +61,7 @@ class Mod extends Model
         return $this->getAttribute('path');
     }
 
-    /*
+    /** 
      * get the created_at for a mod
      *
      * @return string
@@ -71,6 +71,11 @@ class Mod extends Model
         return $this->getAttribute('created_at');
     }
 
+    /** 
+     * relationship with user
+     *
+     * @return BelongsTo
+     */
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);

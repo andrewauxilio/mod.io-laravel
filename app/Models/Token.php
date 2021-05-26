@@ -3,7 +3,9 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Log;
 
 class Token extends Model
 {
@@ -68,6 +70,16 @@ class Token extends Model
     public function getCreatedAt(): string
     {
         return $this->getAttribute('created_at');
+    }
+
+    /**
+     * relationship with log
+     *
+     * @return HasOne
+     */
+    public function logs(): HasOne
+    {
+        return $this->belongsTo(Log::class, 'key', 'key');
     }
 
 }

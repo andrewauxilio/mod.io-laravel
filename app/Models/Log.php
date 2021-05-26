@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use App\Models\Token;
 
 class Log extends Model
 {
@@ -17,5 +19,13 @@ class Log extends Model
         'key',
     ];
 
-    // TODO: challenge 3.0
+    /**
+     * relationship with token
+     *
+     * @return BelongsTo
+     */
+    public function tokens(): BelongsTo
+    {
+        return $this->belongsTo(Token::class, 'key', 'key');
+    }
 }
