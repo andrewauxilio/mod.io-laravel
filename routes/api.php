@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ChallengeOne\Users as Users;
+use App\Http\Controllers\ChallengeTwo\Mods as Mods;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,5 +20,7 @@ Route::get('users/{user}', [Users\ShowController::class, 'show']);
 Route::post('users', [Users\CreateController::class, 'create']);
 
 // TODO: add routes for challenge 2.0
+Route::get('mods', [Mods\IndexController::class, 'index']);
+Route::post('mods', [Mods\CreateController::class, 'create']);
 
 // TODO: add routes for challenge 3.0

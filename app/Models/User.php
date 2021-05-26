@@ -4,8 +4,10 @@ namespace App\Models;
 
 use DateTime;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\Models\Mod;
 
 class User extends Authenticatable
 {
@@ -38,10 +40,7 @@ class User extends Authenticatable
      */
     protected $casts = [
         'created_at' => 'datetime',
-        'updated_at' => 'datetime'
     ];
-
-    protected $dateFormat = 'Y-m-d H:i:s.u';
 
     /**
      * get the id for a user
@@ -61,17 +60,6 @@ class User extends Authenticatable
     public function getCreatedAt(): DateTime
     {
         return $this->getAttribute('created_at');
-    }
-
-
-    /**
-     * get the updated at time for a user
-     *
-     * @return DateTime
-     */
-    public function getUpdatedAt(): DateTime
-    {
-        return $this->getAttribute('updated_at');
     }
 
     /**
@@ -122,5 +110,10 @@ class User extends Authenticatable
     public function setPassword(string $password): void
     {
         $this->setAttribute('password', $password);
+    }
+
+    public function mods(): HasMany
+    {
+        return $this->hasMany(Mod::class);
     }
 }
