@@ -3,6 +3,7 @@
 namespace App\Observers;
 
 use App\Models\Token;
+use App\Models\Log;
 
 class TokenObserver
 {
@@ -14,7 +15,10 @@ class TokenObserver
      */
     public function created(Token $token)
     {
-        // TODO: challenge 3.0 create a log when a token is created
+        Log::create([
+            'key' => $token->key,
+            'action' => 'created'
+        ]);
     }
 
     /**
@@ -25,7 +29,11 @@ class TokenObserver
      */
     public function deleted(Token $token)
     {
-        // TODO: challenge 3.0 create a log when a token is deleted
+        $log = Log::where('key', $token->key)->first();
+
+        $log->update([
+            'action' => 'deleted'
+        ]);
     }
 
 }

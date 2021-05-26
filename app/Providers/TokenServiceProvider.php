@@ -7,6 +7,8 @@ use App\Http\Controllers\ChallengeThree\Tokens\Interfaces\TokenServiceInterface;
 use App\Http\Controllers\ChallengeThree\Tokens\Repositories\TokenRepository;
 use App\Http\Controllers\ChallengeThree\Tokens\Services\TokenService;
 use Illuminate\Support\ServiceProvider;
+use App\Observers\TokenObserver;
+use App\Models\Token;
 
 class TokenServiceProvider extends ServiceProvider
 {
@@ -27,6 +29,6 @@ class TokenServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        Token::observe(TokenObserver::class);
     }
 }

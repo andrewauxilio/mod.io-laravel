@@ -17,40 +17,17 @@ class TokenRepository implements TokenRepositoryInterface
             'key' => Str::uuid(),
         ]);
 
-        $test= Log::create([
-            'key' => $token->key,
-            'action' => 'created'
-        ]);
-
         return $token;
     }
 
     public function revokeToken(string $token): bool
     {
         $token = Token::where('key', $token)->first();
-
-        if ($token) {
-            $tokenUpdate = $token->update([
-                'revoked' => now()
-            ]);
-            $log = Log::where('key', $token->key)->first();
-
-            if ($log) {
-                $logUpdate = $log->update([
-                    'action' => 'deleted'
-                ]);
-            } else {
-                $logUpdate = false;
-            }
-            
-        } else {
-            $tokenUpdate = false;
-            $logUpdate = false;
+  
+        if ($token && $token->delete()) {
+            return true;
         }
 
-  
-        $result = ($tokenUpdate && $logUpdate) ? true : false;
-
-        return $result;
+        return false;
     }
 }
