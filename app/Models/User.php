@@ -38,7 +38,10 @@ class User extends Authenticatable
      */
     protected $casts = [
         'created_at' => 'datetime',
+        'updated_at' => 'datetime'
     ];
+
+    protected $dateFormat = 'Y-m-d H:i:s.u';
 
     /**
      * get the id for a user
@@ -58,6 +61,17 @@ class User extends Authenticatable
     public function getCreatedAt(): DateTime
     {
         return $this->getAttribute('created_at');
+    }
+
+
+    /**
+     * get the updated at time for a user
+     *
+     * @return DateTime
+     */
+    public function getUpdatedAt(): DateTime
+    {
+        return $this->getAttribute('updated_at');
     }
 
     /**

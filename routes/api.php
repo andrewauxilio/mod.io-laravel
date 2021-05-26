@@ -14,6 +14,9 @@ use App\Http\Controllers\ChallengeOne\Users as Users;
 */
 
 // TODO: add routes for challenge 1.0
+Route::get('users', [Users\IndexController::class, 'index']);
+Route::get('users/{user}', [Users\ShowController::class, 'show']);
+Route::post('users', [Users\CreateController::class, 'create']);
 
 // TODO: add routes for challenge 2.0
 

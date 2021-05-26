@@ -21,7 +21,19 @@ final class CreateController extends Controller
      */
     public function create(Request $request): UserResource
     {
-        // TODO: challenge 1.0
+        $request->validate([
+            'name' => 'required|string',
+            'email' => 'required|string|email',
+            'password' => 'required|string'
+        ]);
+
+        $user = User::create([
+            'name' => $request->input('name'),
+            'email' => $request->input('email'),
+            'password' => Hash::make($request->input('password'))
+        ]);
+
+        return new UserResource($user);
     }
 
 

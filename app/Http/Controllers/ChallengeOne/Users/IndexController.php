@@ -19,7 +19,7 @@ final class IndexController extends Controller
      */
     public function index(): AnonymousResourceCollection
     {
-        // TODO: challenge 1.0
+        return UserResource::collection(User::all());
     }
 
 
