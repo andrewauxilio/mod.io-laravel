@@ -25,6 +25,7 @@ class ChallengeThreeTest extends TestCase
         $response = $this->get('/api/tokens');
 
         $token = $user->tokens()->pluck('key')->first();
+
         $log = Log::where('key', $token)
             ->where('action', 'created')
             ->get()

@@ -17,7 +17,8 @@ class Token extends Model
     protected $fillable = [
         'name',
         'key',
-        'revoked'
+        'revoked',
+        'user_id',
     ];
 
     /**
@@ -42,9 +43,9 @@ class Token extends Model
     /**
      * get the key for a token
      *
-     * @return int
+     * @return string
      */
-    public function getKey(): int
+    public function getKey(): string
     {
         return $this->getAttribute('key');
     }
@@ -52,9 +53,9 @@ class Token extends Model
     /**
      * get the revoked for a token
      *
-     * @return int
+     * @return mixed
      */
-    public function getRevoked(): int
+    public function getRevoked(): string|null
     {
         return $this->getAttribute('revoked');
     }
@@ -62,9 +63,9 @@ class Token extends Model
     /**
      * get the created at time for a token
      *
-     * @return DateTime
+     * @return string
      */
-    public function getCreatedAt(): DateTime
+    public function getCreatedAt(): string
     {
         return $this->getAttribute('created_at');
     }

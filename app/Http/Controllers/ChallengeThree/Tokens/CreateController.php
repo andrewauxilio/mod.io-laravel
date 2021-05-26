@@ -4,21 +4,30 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\ChallengeThree\Tokens;
 
-use App\Http\Controllers\ChallengeThree\Tokens\Interfaces\TokenRepositoryInterface;
+use App\Http\Repositories\TokenRepository;
+use App\Http\Resources\TokenResource;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 
 final class CreateController extends Controller
 {
 
+    private $tokenRepository;
+
+    public function __construct(TokenRepository $tokenRepository)
+    {
+        $this->tokenRepository = $tokenRepository;
+    }
+
     /**
      * create a mod and related it to the given user
      *
-     * @param TokenRepositoryInterface $repository
      * @return TokenResource
      */
-    public function create(TokenRepositoryInterface $repository): TokenResource
+    public function create(): TokenResource
     {
-        // TODO: challenge 3.0
+        $token = $this->tokenRepository->issueToken(Auth::user());
+        return new TokenResource($token);
     }
 
 

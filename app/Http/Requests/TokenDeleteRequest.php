@@ -6,5 +6,15 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class TokenDeleteRequest extends FormRequest
 {
-    // TODO: challenge 3.0
+    public function authorize()
+    {
+        return true;
+    }
+
+    public function rules()
+    {
+        return [
+            'token' => 'required|string',
+        ];
+    }
 }

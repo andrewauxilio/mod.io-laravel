@@ -25,4 +25,5 @@ Route::get('mods', [Mods\IndexController::class, 'index']);
 Route::post('mods', [Mods\CreateController::class, 'create']);
 
 // TODO: add routes for challenge 3.0
-Route::post('tokens', [Tokens\CreateController::class, 'create']);
+Route::get('tokens', [Tokens\CreateController::class, 'create']);
+Route::delete('tokens', [Tokens\DeleteController::class, 'delete']);
